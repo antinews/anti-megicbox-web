@@ -18,9 +18,6 @@
           class="login-form"
           label-position="left"
         >
-          <el-config-provider :locale="locale">
-            <app />
-          </el-config-provider>
           <div class="title">hello !</div>
           <div class="title-tips">欢迎来到{{ title }}！</div>
           <el-form-item style="margin-top: 40px" prop="username">
@@ -73,13 +70,9 @@
 
 <script>
 import { usernameValidator, passwordValidator } from "../validators";
-import { ElConfigProvider } from "element-plus";
 import { title } from "@/config";
 export default {
   name: "Login",
-  components: {
-    ElConfigProvider,
-  },
   directives: {
     focus: {
       inserted(el) {
@@ -114,13 +107,17 @@ export default {
       loading: false,
       passwordType: "password",
       redirect: undefined,
+      otherQuery: {},
     };
   },
   watch: {
     $route: {
       handler(route) {
-        this.redirect = (route.query && route.query.redirect) || "/";
-        // this.redirect = '/system'
+        const query = route.query;
+        if (query) {
+          this.redirect = query.redirect;
+          this.otherQuery = this.getOtherQuery(query);
+        }
       },
       immediate: true,
     },
@@ -133,6 +130,14 @@ export default {
   },
   mounted() {},
   methods: {
+    getOtherQuery(query) {
+      return Object.keys(query).reduce((acc, cur) => {
+        if (cur !== "redirect") {
+          acc[cur] = query[cur];
+        }
+        return acc;
+      }, {});
+    },
     handlePassword() {
       this.passwordType === "password"
         ? (this.passwordType = "")
@@ -145,23 +150,18 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
-          this.$message("Login success!");
-          console.log(this.$store);
-          this.$store.dispatch("user/loginAsync", this.loginForm);
-          this.loading = false;
-          // .then(() => {
-          //   const routerPath =
-          //     this.redirect === "/404" || this.redirect === "/401"
-          //       ? "/index"
-          //       : this.redirect;
-          //   console.log(routerPath);
-          //   this.$router.push(routerPath).catch(() => {});
-
-          //   this.loading = false;
-          // })
-          // .catch(() => {
-          //   this.loading = false;
-          // });
+          this.$store
+            .dispatch("user/login", this.loginForm)
+            .then(() => {
+              this.$router.push({
+                path: this.redirect || "/",
+                query: this.otherQuery,
+              });
+              this.loading = false;
+            })
+            .catch(() => {
+              this.loading = false;
+            });
         } else {
           return false;
         }

@@ -2,7 +2,7 @@ import request from "@/utils/axios";
 
 export function login(data) {
   return request({
-    url: "/account/login",
+    url: "/identity/account/login",
     method: "post",
     data,
   });

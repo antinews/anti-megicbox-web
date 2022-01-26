@@ -3,7 +3,6 @@ import { createStore } from "vuex";
 // https://webpack.js.org/guides/dependency-management/#requirecontext
 const modulesFiles = require.context("./modules", true, /\.js$/);
 
-// console.log(modulesFiles);
 // modulesFiles.keys().forEach((x) => {
 //   console.log(x);
 //   const tp = x.replace(/^\.\/(.*)\.\w+$/, "$1");

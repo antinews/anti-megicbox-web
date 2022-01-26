@@ -15,12 +15,12 @@ module.exports = {
    */
   requestTimeout: 3000,
   /**
-   * @type {string | number | array} 200 | [200, 201, 202]
+   * @type {array} [200, 201, 202]
    * @description Status code for successful response.
    * Any other response will be goto the response handler.
    * If you want to configure more success code, can pass [200, 201, ..]
    */
-  successCode: 200,
+  successCode: [200],
   unauthorized: 401,
   forbidden: 403,
   nofind: 404,

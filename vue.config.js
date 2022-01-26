@@ -5,6 +5,11 @@ const settings = require("./src/config");
 
 const name = settings.title || "Vue Megicbox"; // page title
 
+const mockServer = () => {
+  if (process.env.NODE_ENV === "development")
+    return require("./mock/mock-server");
+  else return "";
+};
 /**
  * @description vue-cli配置文件 和webpack差不多. 修改配置也需要重新启动serve才能生效
  * @type {import('@vue/cli-service').ProjectOptions}
@@ -20,6 +25,17 @@ module.exports = {
   // Whether hash file name
   filenameHashing: false,
 
+  devServer: {
+    hot: true,
+    port: 8008,
+    open: true,
+    noInfo: false,
+    overlay: {
+      warnings: true,
+      errors: true,
+    },
+    after: mockServer(),
+  },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.

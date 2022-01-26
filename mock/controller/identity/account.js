@@ -1,13 +1,13 @@
 const accessTokens = {
-  admin: "admin-accessToken",
+  Administrator: "admin-accessToken",
   editor: "editor-accessToken",
   test: "test-accessToken",
 };
 
 module.exports = [
   {
-    url: "/login",
-    type: "post",
+    name: "login",
+    method: "post",
     response(config) {
       const { username } = config.body;
       const accessToken = accessTokens[username];
@@ -25,12 +25,22 @@ module.exports = [
     },
   },
   {
-    url: "/register",
-    type: "post",
+    name: "register",
+    method: "post",
     response() {
       return {
         code: 200,
         message: "模拟注册成功",
+      };
+    },
+  },
+  {
+    name: "logout",
+    method: "post",
+    response() {
+      return {
+        code: 200,
+        message: "模拟退出成功！",
       };
     },
   },

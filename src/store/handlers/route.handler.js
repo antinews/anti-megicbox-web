@@ -5,6 +5,7 @@
  * @returns {*}
  */
 export function menus2Routes(asyncRoutes) {
+  if (!asyncRoutes) return;
   return asyncRoutes.filter((route) => {
     if (isEmptyRoute(route)) return;
     if (route.component === "Layout") {

@@ -35,7 +35,7 @@ const mutations = {
 };
 
 const actions = {
-  async loginAsync({ commit }, loginDto) {
+  async login({ commit }, loginDto) {
     const { username, password } = loginDto;
     const { data } = await login({ username: username.trim(), password });
     commit("setAccessToken", data.accessToken);
@@ -81,30 +81,30 @@ const actions = {
 
 function wellcome() {
   const hour = new Date().getHours();
-  let thisTime = "晚上好";
+  let message = "晚上好";
   switch (hour) {
     case hour < 6:
-      thisTime = `现在是凌晨${new Date()}`;
+      message = `现在是凌晨${new Date()}`;
       break;
     case hour < 8:
-      thisTime = "早上好";
+      message = "早上好";
       break;
     case hour < 11:
-      thisTime = "上午好";
+      message = "上午好";
       break;
     case hour < 13:
-      thisTime = "中午好";
+      message = "中午好";
       break;
     case hour < 18:
-      thisTime = "下午好";
+      message = "下午好";
       break;
     default:
-      thisTime = "晚上好";
+      message = "晚上好";
       break;
   }
   ElNotification.success({
     title: `欢迎登录${title}`,
-    message: thisTime,
+    message,
   });
 }
 

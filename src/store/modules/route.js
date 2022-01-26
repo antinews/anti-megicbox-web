@@ -17,7 +17,6 @@ const mutations = {
 const actions = {
   async getRoutes({ commit }) {
     const { data } = await getList();
-    console.log("data=", data);
     const routes = menus2Routes(data);
     commit("addRoutes", routes);
     return routes;

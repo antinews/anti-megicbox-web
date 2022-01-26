@@ -3,10 +3,8 @@ import store from "@/store";
 import { successCode, title, requestTimeout } from "@/config";
 import { handleCode, handleError } from "./response.handler";
 
-const baseUrl = process.env.baseUrl;
-console.log(process.env.NODE_ENV);
-console.log(process.env);
-const perfix = process.env.defaultPerfix;
+const baseUrl = process.env.VUE_APP_BASE_API;
+const perfix = process.env.VUE_APP_DEFAULT_PERFIX;
 
 // create an axios instance
 const service = axios.create({
@@ -46,7 +44,7 @@ service.interceptors.response.use(
     }
     handleCode(code, message);
     return Promise.reject(
-      `${title}请求异常拦截:
+      `\n${title}请求异常拦截:
       ${JSON.stringify({ url: config.url, code, message }) || "Error"}
       `
     );

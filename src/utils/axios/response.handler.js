@@ -32,7 +32,7 @@ export const handleCode = (code, message) => {
 
 export const handleError = (error) => {
   let { message } = error;
-  console.log(error);
+  // console.log(error);
   if (message === "Network Error") {
     message = "后端接口连接异常";
   }

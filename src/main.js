@@ -17,7 +17,7 @@ vue.use(store);
 import ElementPlus from "./plugins/element";
 vue.use(ElementPlus);
 
-import GlobalProperty from "./plugins/globalProperty";
+import GlobalProperty from "./plugins/global-property";
 vue.use(GlobalProperty);
 
 import Icon from "@/icons";
