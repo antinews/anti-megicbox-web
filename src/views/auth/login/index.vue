@@ -22,7 +22,7 @@
           <div class="title-tips">欢迎来到{{ title }}！</div>
           <el-form-item style="margin-top: 40px" prop="username">
             <span class="svg-container">
-              <svg-icon icon-class="user" />
+              <svg-icon name="user" />
             </span>
             <el-input
               v-model.trim="loginForm.username"
@@ -47,7 +47,7 @@
             />
             <span class="show-password" @click="handlePassword">
               <svg-icon
-                :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
+                :name="passwordType === 'password' ? 'eye' : 'eye-open'"
               />
             </span>
           </el-form-item>
@@ -153,10 +153,10 @@ export default {
           this.$store
             .dispatch("user/login", this.loginForm)
             .then(() => {
-              this.$router.push({
-                path: this.redirect || "/",
-                query: this.otherQuery,
-              });
+              // this.$router.push({
+              //   path: this.redirect || "/",
+              //   query: this.otherQuery,
+              // });
               this.loading = false;
             })
             .catch(() => {

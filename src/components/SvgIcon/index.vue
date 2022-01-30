@@ -14,7 +14,7 @@
 export default {
   name: "SvgIcon",
   props: {
-    iconClass: {
+    name: {
       type: String,
       required: true,
     },
@@ -25,18 +25,18 @@ export default {
   },
   computed: {
     isExternal() {
-      return /^(https?:|mailto:|tel:)/.test(this.iconClass);
+      return /^(https?:|mailto:|tel:)/.test(this.name);
     },
     iconName() {
-      return `#svg-icon-${this.iconClass}`;
+      return `#svg-icon-${this.name}`;
     },
     svgClass() {
       return ["svg-icon", this.className ? this.className : ""];
     },
     externalIconStyle() {
       return {
-        mask: `url(${this.iconClass}) no-repeat 50% 50%`,
-        "-webkit-mask": `url(${this.iconClass}) no-repeat 50% 50%`,
+        mask: `url(${this.name}) no-repeat 50% 50%`,
+        "-webkit-mask": `url(${this.name}) no-repeat 50% 50%`,
       };
     },
   },

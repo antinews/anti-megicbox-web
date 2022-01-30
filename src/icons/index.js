@@ -5,7 +5,6 @@ const requireAll = (requireContext) =>
   requireContext.keys().map(requireContext);
 requireAll(req);
 console.log(req.keys());
-console.log(requireAll(req));
 
 export default {
   install: function (Vue) {

@@ -24,17 +24,15 @@ router.beforeEach(async (to, from, next) => {
       NProgress.done(); // hack: https://github.com/PanJiaChen/vue-element-admin/pull/2939
     } else {
       try {
-        console.log(1);
         // get user can accessible routes
         const routes = await store.dispatch("route/getRoutes");
         //dynamically add, vue router 4.0 removed addRoutes, so we have to use addRoute
         routes.forEach((route) => {
-          console.log(router.hasRoute(route));
           if (!router.hasRoute(route)) {
             router.addRoute(route);
           }
         });
-        console.log(router.getRoutes().length);
+        console.log(router.getRoutes());
         // hack method to ensure that addRoutes is complete
         // set the replace: true, so the navigation will not leave a history record
         // next({ ...to, replace: true });

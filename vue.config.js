@@ -24,7 +24,7 @@ module.exports = {
   assetsDir: "static",
   // Whether hash file name
   filenameHashing: false,
-
+  lintOnSave: process.env.NODE_ENV === "development",
   devServer: {
     hot: true,
     port: 8008,

@@ -11,7 +11,7 @@ import { title } from "@/config";
 const state = {
   accessToken: getToken(),
   name: "",
-  avatar: "",
+  avatar: "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
   introduction: "",
   roles: [],
 };
@@ -81,8 +81,9 @@ const actions = {
 
 function wellcome() {
   const hour = new Date().getHours();
+  console.log(hour);
   let message = "晚上好";
-  switch (hour) {
+  switch (true) {
     case hour < 6:
       message = `现在是凌晨${new Date()}`;
       break;
@@ -100,11 +101,10 @@ function wellcome() {
       break;
     default:
       message = "晚上好";
-      break;
   }
   ElNotification.success({
     title: `欢迎登录${title}`,
-    message,
+    message: `${message}`,
   });
 }
 

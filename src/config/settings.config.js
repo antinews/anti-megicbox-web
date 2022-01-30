@@ -41,7 +41,7 @@ module.exports = {
    * @type {number}
    * @description vue-router keep-alive component max alive routes
    */
-  keepAliveMax: 99,
+  keepAliveMaxNum: 99,
   /**
    * @type {string}  'history' | 'hash'
    * @description vue-router route mode
@@ -74,4 +74,6 @@ module.exports = {
    * @description Token storage space
    */
   tokenStorage: "localStorage",
+
+  copyright: "2022 Antinew, All rights reserved.",
 };

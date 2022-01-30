@@ -18,7 +18,7 @@ const theme = {
    * @type {boolean} true | false
    * @description Whether show theme control-panel
    */
-  themeBar: true,
+  controlPanel: true,
   /**
    * @type {boolean} true | false
    * @description Whether need tagsView
